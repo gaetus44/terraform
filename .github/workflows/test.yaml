@@ -1,0 +1,14 @@
+name: Checkov Static Analysis
+
+on: [push]
+
+jobs:
+  checkov:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Run Checkov
+      uses: bridgecrewio/checkov-action@v3
+      with:
+        directory: path/to/your/terraform/code
