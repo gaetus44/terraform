@@ -11,4 +11,4 @@ jobs:
     - name: Run Checkov
       uses: bridgecrewio/checkov-action@v3
       with:
-        directory: /gaetus44/terraform
+        directory: terraform
