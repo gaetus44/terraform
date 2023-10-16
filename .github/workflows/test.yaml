@@ -1,21 +1,20 @@
-name: Checkov Analysis
-
-on:
-  push:
-    paths:
-      - 'quickstart/101-vm-with-infrastructure'
+name: Static Security Analysis with Checkov
+on: [pull_request]
 
 jobs:
   checkov:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Checkov
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install checkov
         run: pip install checkov
 
       - name: Run Checkov
-        run: checkov -d 101-vm-with-infrastructure
-
+        run: checkov -d .
