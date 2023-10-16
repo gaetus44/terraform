@@ -1,20 +1,22 @@
-name: Static Security Analysis with Checkov
-on: [pull_request]
-
+name: Checkov
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 jobs:
-  checkov:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
-
-      - name: Install checkov
-        run: pip install checkov
-
-      - name: Run Checkov
-        run: checkov -d .
+          python-version: 3.8
+      - name: Test with Checkov
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: quickstart/101-vm-with-infrastructure
+          framework: terraform
+          check: CKV_AZURE_10
