@@ -19,4 +19,4 @@ jobs:
         with:
           directory: quickstart/101-vm-with-infrastructure
           framework: terraform
-          check: CKV_AZURE_10
+          check: CKV_AZURE_50
