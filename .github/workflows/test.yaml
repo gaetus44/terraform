@@ -1,14 +1,21 @@
-name: Checkov Static Analysis
+name: Checkov Analysis
 
-on: [push]
+on:
+  push:
+    paths:
+      - '101-vm-with-infrastructure/**'
 
 jobs:
   checkov:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Run Checkov
-      uses: bridgecrewio/checkov-action@v3
-      with:
-        directory: terraform/quickstart/101-vm-with-infrastructure
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Checkov
+        run: pip install checkov
+
+      - name: Run Checkov
+        run: checkov -d 101-vm-with-infrastructure
+
