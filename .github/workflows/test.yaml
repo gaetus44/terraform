@@ -3,7 +3,7 @@ name: Checkov Analysis
 on:
   push:
     paths:
-      - '101-vm-with-infrastructure/**'
+      - 'quickstart/101-vm-with-infrastructure'
 
 jobs:
   checkov:
