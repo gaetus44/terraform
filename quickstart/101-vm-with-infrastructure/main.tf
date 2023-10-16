@@ -117,6 +117,7 @@ resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
     username   = var.username
     public_key = jsondecode(azapi_resource_action.ssh_public_key_gen.output).publicKey
   }
+}
 
   boot_diagnostics {
     storage_account_uri = azurerm_storage_account.my_storage_account.primary_blob_endpoint
